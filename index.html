@@ -116,29 +116,68 @@
       border: 1px solid rgba(201, 162, 39, 0.3); pointer-events: none;
     }
     
-    .filters-wrapper { 
-      display: flex; justify-content: flex-start; margin-top: 8px; padding-bottom: 8px; 
-      overflow-x: auto; -webkit-overflow-scrolling: touch; 
-      scrollbar-width: none;
+    .filters-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
+      padding-bottom: 8px;
     }
-    .filters-wrapper::-webkit-scrollbar { display: none; }
     .filters {
-      display: inline-flex; gap: 5px; padding: 3px;
-      background: rgba(255, 255, 255, 0.03); border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.05);
-      flex-shrink: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      width: 100%;
+      max-width: 800px;
+      padding: 6px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
     .chip {
-      padding: 6px 10px; border-radius: 14px; font-size: 11px; font-weight: 600;
-      cursor: pointer; white-space: nowrap; transition: all 0.2s;
-      background: transparent; color: var(--muted); border: 1px solid transparent; flex-shrink: 0;
+      padding: 10px 4px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid transparent;
+      text-align: center;
+      white-space: nowrap;
     }
-    .chip:active { transform: scale(0.95); }
-    .chip.all.active { background: var(--gold); color: #000; box-shadow: 0 2px 8px rgba(201,162,39,0.3); }
-    .chip.women.active { background: var(--pink); color: #000; box-shadow: 0 2px 8px rgba(255,105,180,0.3); }
-    .chip.men.active { background: var(--men-bg); color: #000; box-shadow: 0 2px 8px rgba(255,255,255,0.2); }
-    .chip.unisex.active { background: var(--unisex-bg); color: #000; box-shadow: 0 2px 8px rgba(136,136,136,0.3); }
-    .chip.hits.active { background: linear-gradient(135deg, #ff6b6b, #ff8e53); color: #fff; box-shadow: 0 2px 8px rgba(255,107,107,0.4); }
-    .chip.sale.active { background: linear-gradient(135deg, #4facfe, #00f2fe); color: #000; box-shadow: 0 2px 8px rgba(79,172,254,0.4); }
+    /* 2-я строка: кнопки занимают по 2 колонки */
+    .chip:nth-child(5), .chip:nth-child(6) {
+      grid-column: span 2;
+      padding: 14px 8px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+    .chip:nth-child(5)::after {
+      content: "Топ продаж";
+      font-size: 9px;
+      font-weight: 500;
+      opacity: 0.85;
+      display: block;
+    }
+    .chip:nth-child(6)::after {
+      content: "Выгода до 33%";
+      font-size: 9px;
+      font-weight: 500;
+      opacity: 0.85;
+      display: block;
+    }
+    .chip:active { transform: scale(0.96); }
+    /* Активные состояния */
+    .chip[data-filter="all"].active { background: var(--gold); color: #000; box-shadow: 0 2px 8px rgba(201,162,39,0.3); }
+    .chip[data-filter="women"].active { background: var(--pink); color: #000; box-shadow: 0 2px 8px rgba(255,105,180,0.3); }
+    .chip[data-filter="men"].active { background: var(--men-bg); color: #000; box-shadow: 0 2px 8px rgba(255,255,255,0.2); }
+    .chip[data-filter="unisex"].active { background: var(--unisex-bg); color: #000; box-shadow: 0 2px 8px rgba(136,136,136,0.3); }
+    .chip[data-filter="hits"].active { background: linear-gradient(135deg, #ff6b6b, #ff8e53); color: #fff; box-shadow: 0 2px 8px rgba(255,107,107,0.4); }
+    .chip[data-filter="sale"].active { background: linear-gradient(135deg, #4facfe, #00f2fe); color: #000; box-shadow: 0 2px 8px rgba(79,172,254,0.4); }
 
     #list { padding: 0 10px; width: 100%; margin: 0 auto; display: grid; gap: 10px; }
     .brand-group { background: var(--card); border-radius: 10px; border: 1px solid var(--border); overflow: hidden; }
